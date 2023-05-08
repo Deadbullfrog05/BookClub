@@ -23,6 +23,7 @@ import axios from "axios";
 import {BsStar, BsStarFill, BsStarHalf} from "react-icons/bs";
 import {FiShoppingCart} from "react-icons/fi";
 import { useNavigate } from "react-router-dom";
+import addBookToCart from "../utils/addBookToCart";
 const data = {
   isNew: true,
   imageURL:
@@ -103,10 +104,10 @@ function ProductAddToCart({book}) {
   }
  
   return (
-    <Card maxW="sm" marginBottom={"50"} backgroundColor="whitesmoke" onClick={() => {
+    <Card maxW="sm" marginBottom={"50"} backgroundColor="whitesmoke">
+      <CardBody className="CardBody" onClick={() => {
       navigate(`/detail/${book._id}`)
     }}>
-      <CardBody className="CardBody">
         <Image className="img"
           src={book.image}
           alt={book.bookName}
@@ -160,7 +161,9 @@ function ProductAddToCart({book}) {
           }}>
             Chat With Seller
           </Button>
-          <Button className="Button2" size={['sm','md','lg']} variant="ghost" colorScheme="blue">
+          <Button className="Button2" size={['sm','md','lg']} variant="ghost" colorScheme="blue" onClick={() => {
+            addBookToCart(book._id,toast);
+          }}>
             Add to cart
           </Button>
         </ButtonGroup>

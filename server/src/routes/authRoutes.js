@@ -14,7 +14,8 @@ import {
     userSignedInValidationController,
     getUserDetails,
     getDetailsFromId,
-    updateUserDetails
+    updateUserDetails,
+    addBookToCart
 } from "../controllers/authController.js";
 import { errorHandler } from "../utils/errorHandler.js";
 import jwtAuth from "../middleware/jwtAuth.js";
@@ -103,5 +104,5 @@ route.post('/verify-signin', errorHandler, userSignedInValidationController);
 route.get('/user-details',errorHandler,jwtAuth,getUserDetails);
 route.get('/:userId', errorHandler, getDetailsFromId);
 route.post('/update-user/:userId', errorHandler, updateUserDetails);
-
+route.post('/addCart/:userId', errorHandler, addBookToCart);
 export default route;

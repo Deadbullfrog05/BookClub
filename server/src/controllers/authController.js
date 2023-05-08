@@ -430,7 +430,30 @@ const updateUserDetails = async (req, res, next) => {
   }catch(err){
     next();
   }
+};
+
+const addBookToCart = async (req, res, next) => {
+  try{
+    console.log('Cart');
+    const id = req.params.userId;
+    const user = await User.findById(id);
+    console.log(user.Cart);
+
+    if(!user.Cart.includes(req.body.bookId))
+    user.Cart.push(req.body.bookId);
+
+    console.log(user.Cart);
+
+    const updatedUser = await User.findByIdAndUpdate(id, {Cart:user.Cart}, {new: true});
+
+    res.status(200).json({
+      message: "User Cart updated successfully"
+    })
+  }catch(err){
+    next();
+  }
 }
+
 
 export {
   signupController,
@@ -444,4 +467,5 @@ export {
   getUserDetails,
   getDetailsFromId,
   updateUserDetails,
+  addBookToCart,
 };

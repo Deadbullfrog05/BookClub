@@ -49,6 +49,7 @@ import {
   BsFillChatDotsFill,
   BsBookFill,
   BsFillCloudDownloadFill,
+  BsCartCheck
 } from "react-icons/bs";
 import {TbNotebook} from "react-icons/tb";
  
@@ -65,6 +66,7 @@ const LinkItems: Array<LinkItemProps> = [
   {name: "Profile", icon: CgProfile, route: "/profile"},
   {name: "My Chats", icon: BsFillChatDotsFill, route: "/messenger"},
   {name: "Download Notes", icon: BsFillCloudDownloadFill, route: "/notes-download"},
+  {name: "My Cart", icon: BsCartCheck, route: "/cart"},
 ];
  
 export default function SidebarWithHeader({children}: {children: ReactNode}) {
