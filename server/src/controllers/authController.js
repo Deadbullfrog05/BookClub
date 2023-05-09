@@ -381,7 +381,7 @@ const getUserDetails = async (req, res, next) => {
       email: user.email,
       username: user.userName,
       image: user.image,
-      about: user.about
+      about: user.about,
     });
   } catch (err) {
     next();
@@ -417,7 +417,7 @@ const getDetailsFromId = async (req, res, next) => {
 };
 
 const updateUserDetails = async (req, res, next) => {
-  try{
+  try {
     console.log(req.body);
     const id = req.params.userId;
     console.log(id);
@@ -425,20 +425,26 @@ const updateUserDetails = async (req, res, next) => {
     const updatedUser = await User.findByIdAndUpdate(id, req.body, {new: true});
 
     res.status(200).json({
-      message: "User updated successfully"
-    })
-  }catch(err){
+      message: "User updated successfully",
+    });
+  } catch (err) {
     next();
   }
 };
 
 const addBookToCart = async (req, res, next) => {
+<<<<<<< HEAD
   try{
     console.log('Cart');
+=======
+  try {
+    console.log("Cart");
+>>>>>>> fa89b8e485d8e9c8fba43cf011894449d31eceb3
     const id = req.params.userId;
     const user = await User.findById(id);
     console.log(user.Cart);
 
+<<<<<<< HEAD
     if(!user.Cart.includes(req.body.bookId))
     user.Cart.push(req.body.bookId);
 
@@ -453,6 +459,39 @@ const addBookToCart = async (req, res, next) => {
     next();
   }
 }
+=======
+    if (!user.Cart.includes(req.body.bookId)) user.Cart.push(req.body.bookId);
+
+    console.log(user.Cart);
+
+    const updatedUser = await User.findByIdAndUpdate(
+      id,
+      {Cart: user.Cart},
+      {new: true}
+    );
+
+    res.status(200).json({
+      message: "User Cart updated successfully",
+    });
+  } catch (err) {
+    next();
+  }
+};
+
+const getAllCartBooks = async (req, res, next) => {
+  try {
+    const id = req.params.userId;
+    const user = await User.findById(id);
+    console.log(user.Cart);
+
+    res.status(200).json({
+      data: user.Cart
+    });
+  } catch (err) {
+    next();
+  }
+};
+>>>>>>> fa89b8e485d8e9c8fba43cf011894449d31eceb3
 
 
 export {
@@ -468,4 +507,8 @@ export {
   getDetailsFromId,
   updateUserDetails,
   addBookToCart,
+<<<<<<< HEAD
+=======
+  getAllCartBooks,
+>>>>>>> fa89b8e485d8e9c8fba43cf011894449d31eceb3
 };
